@@ -1,10 +1,7 @@
-const { response } = require("express");
-
 const $animalForm = document.querySelector('#animals-form');
 const $displayArea = document.querySelector('#display-area');
 
 const printResults = resultArr => {
-  console.log(resultArr);
 
   const animalHTML = resultArr.map(({ id, name, personalityTraits, species, diet }) => {
     return `
@@ -31,8 +28,6 @@ const getAnimals = (formData = {}) => {
     queryUrl += `${key}=${value}&`;
   });
 
-  console.log(queryUrl);
-
   fetch(queryUrl)
   .then(response => {
     if (!response.ok) {
@@ -41,7 +36,6 @@ const getAnimals = (formData = {}) => {
     return response.json();
   })
   .then(animalData => {
-    console.log(animalData);
     printResults(animalData);
   });
 };
